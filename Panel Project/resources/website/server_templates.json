@@ -1,0 +1,72 @@
+[
+    {
+    "name": "Dirt",
+    "id": 541,
+    "attributes":{
+      "ram": 3,
+      "disk": 8,
+      "limit": 100,
+      "threads": 3
+      }
+    },
+    {
+    "name": "Grass",
+    "id": 693,
+    "attributes":{
+      "ram": 2,
+      "disk": 5,
+      "limit": 100,
+      "threads": 3
+      }
+    },
+    {
+    "name": "Stone",
+    "id": 691,
+    "attributes":{
+      "ram": 5,
+      "disk": 10,
+      "limit": 100,
+      "threads": 3
+      }
+    },
+    {
+    "name": "Iron",
+    "id": 697,
+    "attributes":{
+      "ram": 8,
+      "disk": 15,
+      "limit": 100,
+      "threads": 3
+      }
+    },
+    {
+    "name": "Gold",
+    "id": 699,
+    "attributes":{
+      "ram": 10,
+      "disk": 25,
+      "limit": 1000,
+      "threads": 3
+      }
+    },
+    {
+    "name": "Diamond",
+    "id": 701,
+    "attributes":{
+      "ram": 12,
+      "disk": 30,
+      "limit": 1000,
+      "threads": 3
+      }
+    },
+    {
+    "name": "Netherite",
+    "id": 705,
+    "attributes":{
+      "ram": 16,
+      "disk": 50,
+      "limit": 1000,
+      "threads": 3
+      }
+    }
+]

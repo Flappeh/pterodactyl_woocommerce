@@ -1,0 +1,14 @@
+{
+    "server.properties": {
+        "parser": "properties",
+        "find": {
+            "server-ip": "0.0.0.0",
+            "server-port": "{{server.build.default.port}}",
+            "query.port": "{{server.build.default.port}}",
+            "enforce-secure-profile":false,
+            "max-players": 100,
+            "max-tick-time": -1,
+            "motd": "Server by Infinity-Projects.de"
+        }
+    }
+}
