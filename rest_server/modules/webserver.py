@@ -173,7 +173,6 @@ server_details=[
         
     ]
 
-server_req_args = reqparse.RequestParser()
 
 def download_file(server_full_uuid:str,download_url:str,client_header:str):
     url_download = f'https://panel.infinity-projects.de/api/client/servers/{server_full_uuid}/files/pull'
@@ -200,13 +199,14 @@ def change_type(server_id:int,details:json,app_header:str):
     result = requests.post(url=url_change_type,headers=app_header,data=details)
 
 
+
 class MinecraftChangeType(Resource):
     def get(self):
         return "Hello damdam"
     def post(self,server_id,owner_id):
         return f"Server ID : {server_id}, Server Owner: {owner_id}"
     
-        
+
 class server:
     app = Flask("PanelAPI")
     api = Api(app)
