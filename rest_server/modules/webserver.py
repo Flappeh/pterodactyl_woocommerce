@@ -26,6 +26,7 @@ null = None
 server_details=[
         {
             "id":1,
+            "name":"paper",
             "body":{
                 "startup": "java -Xmx$(({{SERVER_MEMORY}}-1024))M -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs/ -Daikars.new.flags=true --add-modules=jdk.incubator.vector -jar {{SERVER_JARFILE}}",
                 "environment": {
@@ -47,6 +48,7 @@ server_details=[
         },
         {
             "id":2,
+            "name":"fabric",
             "body":{
                 "startup": "java  -Xmx$(({{SERVER_MEMORY}}-1024))M -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs/ -Daikars.new.flags=true --add-modules=jdk.incubator.vector -jar {{SERVER_JARFILE}}",
                 "environment": {
@@ -68,6 +70,7 @@ server_details=[
         },
         {
             "id":3,
+            "name":"forge",
             "body":{
                 "startup": "java -Xmx$(({{SERVER_MEMORY}}-1024))M -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs/ -Daikars.new.flags=true --add-modules=jdk.incubator.vector -Dterminal.jline=false -Dterminal.ansi=true $( [[  ! -f unix_args.txt ]] && printf %s \"-jar {{SERVER_JARFILE}}\" || printf %s \"@unix_args.txt\" )",
                 "environment": {
@@ -89,6 +92,7 @@ server_details=[
         },
         {
             "id":4,
+            "name":"purpur",
             "body":{
                 "startup": "java  -Dterminal.jline=false -Dterminal.ansi=true  -Xmx$(({{SERVER_MEMORY}}-1024))M -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs/ -Daikars.new.flags=true --add-modules=jdk.incubator.vector -jar {{SERVER_JARFILE}}",
                 "environment": {
@@ -110,6 +114,7 @@ server_details=[
         },
         {
             "id":5,
+            "name":"bungeecord",
             "body":{
                 "startup": "java -Xmx$(({{SERVER_MEMORY}}-512))M -XX:MaxRAMPercentage=95.0 -jar {{SERVER_JARFILE}}",
                 "environment": {
@@ -130,6 +135,7 @@ server_details=[
         },
         {
             "id":6,
+            "name":"waterfall",
             "body":{
                 "startup": "java -Xmx$(({{SERVER_MEMORY}}-512))M -Dterminal.jline=false -Dterminal.ansi=true -jar {{SERVER_JARFILE}}",
                 "environment": {
@@ -151,6 +157,7 @@ server_details=[
         },
         {
             "id":7,
+            "name":"folia",
             "body":{
                 "startup": "java -Xmx$(({{SERVER_MEMORY}}-1024))M -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs/ -Daikars.new.flags=true --add-modules=jdk.incubator.vector -jar {{SERVER_JARFILE}}",
                 "environment": {
@@ -188,15 +195,14 @@ def download_file(server_full_uuid:str,download_url:str):
     result = requests.post(url=url_download,headers=header_client,json=body)
 
 
-
+#Check if user that requested the type change has the servers
 def verify_user(user_id:int,server_id:int,requested_type:int):
     url_verify_ownership=f'https://panel.infinity-projects.de/api/application/servers/{server_id}'
     result = requests.get(url=url_verify_ownership,headers=header_app).json()
     if result["user"]!=user_id:
         return False
     else:
-        details=next((item for item in server_details if item['id']==requested_type))
-        change_type(server_id,json.dumps(details))
+        return True
         
 
 def change_type(server_id:int,details:json,app_header:str):
@@ -209,11 +215,11 @@ class MinecraftChangeType(Resource):
         return "Hello damdam"
     def post(self,server_id,owner_id,requested_type):
         args = change_type_args.parse_args()
-        
         if verify_user==False:
             abort(404, message="User is not the owner of server...")
         else:
-            pass
+            details=next((item for item in server_details if item['id']==requested_type))
+            
         return f"Server ID : {server_id}, Server Owner: {owner_id}, requested Type: {requested_type}"
     
         
