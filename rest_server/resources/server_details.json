@@ -1,0 +1,153 @@
+[
+    {
+    "id":1,
+    "name":"paper",
+    "body":{
+        "startup": "java -Xmx$(({{SERVER_MEMORY}}-1024))M -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs/ -Daikars.new.flags=true --add-modules=jdk.incubator.vector -jar {{SERVER_JARFILE}}",
+        "environment": {
+            "PROJECT":"paper",
+            "SERVER_JARFILE": "paper.jar",
+            "MINECRAFT_VERSION": "latest",
+            "BUILD_NUMBER":"latest",
+            "DL_PATH": null,
+            "FABRIC_VERSION":"latest",
+            "LOADER_VERSION":"latest",
+            "BUILD_TYPE":"recommended",
+            "FORGE_VERSION":null,
+            "BUNGEE_VERSION":"latest"
+        },
+        "egg": 46,
+        "image": "ghcr.io/pterodactyl/yolks:java_18",
+        "skip_scripts": false
+    }
+},
+{
+    "id":2,
+    "name":"fabric",
+    "body":{
+        "startup": "java  -Xmx$(({{SERVER_MEMORY}}-1024))M -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs/ -Daikars.new.flags=true --add-modules=jdk.incubator.vector -jar {{SERVER_JARFILE}}",
+        "environment": {
+            "PROJECT":"fabric",
+            "SERVER_JARFILE": "fabric.jar",
+            "MINECRAFT_VERSION": "latest",
+            "BUILD_NUMBER":"latest",
+            "DL_PATH": null,
+            "FABRIC_VERSION":"latest",
+            "LOADER_VERSION":"latest",
+            "BUILD_TYPE":"recommended",
+            "FORGE_VERSION":null,
+            "BUNGEE_VERSION":"latest"
+        },
+        "egg": 46,
+        "image": "ghcr.io/pterodactyl/yolks:java_18",
+        "skip_scripts": false
+    }
+},
+{
+    "id":3,
+    "name":"forge",
+    "body":{
+        "startup": "java -Xmx$(({{SERVER_MEMORY}}-1024))M -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs/ -Daikars.new.flags=true --add-modules=jdk.incubator.vector -Dterminal.jline=false -Dterminal.ansi=true $( [[  ! -f unix_args.txt ]] && printf %s \"-jar {{SERVER_JARFILE}}\" || printf %s \"@unix_args.txt\" )",
+        "environment": {
+            "PROJECT":"forge",
+            "SERVER_JARFILE": "forge.jar",
+            "MINECRAFT_VERSION": "latest",
+            "DL_PATH": null,
+            "FABRIC_VERSION":"latest",
+            "LOADER_VERSION":"latest",
+            "BUILD_TYPE":"recommended",
+            "FORGE_VERSION":null,
+            "BUNGEE_VERSION":"latest"
+        },
+        "egg": 46,
+        "image": "ghcr.io/pterodactyl/yolks:java_18",
+        "skip_scripts": false
+    }
+},
+{
+    "id":4,
+    "name":"purpur",
+    "body":{
+        "startup": "java  -Dterminal.jline=false -Dterminal.ansi=true  -Xmx$(({{SERVER_MEMORY}}-1024))M -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs/ -Daikars.new.flags=true --add-modules=jdk.incubator.vector -jar {{SERVER_JARFILE}}",
+        "environment": {
+            "PROJECT":"purpur",
+            "SERVER_JARFILE": "purpur.jar",
+            "MINECRAFT_VERSION": "latest",
+            "BUILD_NUMBER":"latest",
+            "DL_PATH": null,
+            "FABRIC_VERSION":"latest",
+            "LOADER_VERSION":"latest",
+            "BUILD_TYPE":"recommended",
+            "FORGE_VERSION":null,
+            "BUNGEE_VERSION":"latest"
+        },
+        "egg": 46,
+        "image": "ghcr.io/pterodactyl/yolks:java_18",
+        "skip_scripts": false
+    }
+},
+{
+    "id":5,
+    "name":"bungeecord",
+    "body":{
+        "startup": "java -Xmx$(({{SERVER_MEMORY}}-512))M -XX:MaxRAMPercentage=95.0 -jar {{SERVER_JARFILE}}",
+        "environment": {
+            "PROJECT":"bungeecord",
+            "SERVER_JARFILE": "bungeecord.jar",
+            "BUNGEE_VERSION": "latest",
+            "DL_PATH": null,
+            "FABRIC_VERSION":"latest",
+            "LOADER_VERSION":"latest",
+            "BUILD_TYPE":"recommended",
+            "FORGE_VERSION":null
+        },
+        "egg": 46,
+        "image": "ghcr.io/pterodactyl/yolks:java_18",
+        "skip_scripts": false
+    }
+},
+{
+    "id":6,
+    "name":"waterfall",
+    "body":{
+        "startup": "java -Xmx$(({{SERVER_MEMORY}}-512))M -Dterminal.jline=false -Dterminal.ansi=true -jar {{SERVER_JARFILE}}",
+        "environment": {
+            "PROJECT":"waterfall",
+            "SERVER_JARFILE": "waterfall.jar",
+            "MINECRAFT_VERSION": "latest",
+            "BUILD_NUMBER":"latest",
+            "DL_PATH": null,
+            "FABRIC_VERSION":"latest",
+            "LOADER_VERSION":"latest",
+            "BUILD_TYPE":"recommended",
+            "FORGE_VERSION":null,
+            "BUNGEE_VERSION":"latest"
+        },
+        "egg": 46,
+        "image": "ghcr.io/pterodactyl/yolks:java_18",
+        "skip_scripts": false
+    }
+},
+{
+    "id":7,
+    "name":"folia",
+    "body":{
+        "startup": "java -Xmx$(({{SERVER_MEMORY}}-1024))M -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs/ -Daikars.new.flags=true --add-modules=jdk.incubator.vector -jar {{SERVER_JARFILE}}",
+        "environment": {
+            "PROJECT":"folia",
+            "SERVER_JARFILE": "folia.jar",
+            "MINECRAFT_VERSION": "latest",
+            "BUILD_NUMBER":"latest",
+            "DL_PATH": null,
+            "FABRIC_VERSION":"latest",
+            "LOADER_VERSION":"latest",
+            "BUILD_TYPE":"recommended",
+            "FORGE_VERSION":null,
+            "BUNGEE_VERSION":"latest"
+        },
+        "egg": 46,
+        "image": "ghcr.io/pterodactyl/yolks:java_18",
+        "skip_scripts": false
+    }
+}
+]
