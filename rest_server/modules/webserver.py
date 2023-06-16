@@ -33,12 +33,14 @@ change_type_args.add_argument("request_type", type=int, help="Server type reques
 
 
 def download_file(server_full_uuid:str,download_url:str):
+    print(f'downloading from {download_url}')
     url_download = f'https://panel.infinity-projects.de/api/client/servers/{server_full_uuid}/files/pull'
     body={
         "root": "/",
         "url": f"{download_url}"
     }
-    result = requests.post(url=url_download,headers=header_client,json=body)
+    response = requests.post(url=url_download,headers=header_client,json=body)
+    print(response)
     return True
 
 
@@ -51,9 +53,9 @@ def verify_user(user_id:int,server_id:int):
     else:
         return True,{"server_id": server_id,
                      "server_uuid": f"{result['attributes']['uuid']}",
-                      "server_identifier": f"{result['attributes']['uuid']}"
+                      "server_identifier": f"{result['attributes']['identifier']}"
                     }
-def rename_file(server_identifier:int,old_name:str,new_name:str):
+def rename_file(server_identifier:str,old_name:str,new_name:str):
     url_rename = f'https://panel.infinity-projects.de/api/client/{server_identifier}/files/rename'
     body = {
         "root": "/",
@@ -67,6 +69,15 @@ def rename_file(server_identifier:int,old_name:str,new_name:str):
     response = requests.put(url=url_rename,headers=header_client,json=body)
     return response.json()
     
+def start_server(server_identifier:str):
+    url_start = f'https://panel.infinity-projects.de/api/client/servers/{server_identifier}/power'
+    body =  {
+            "signal": "start"
+            }
+    response = requests.post(url=url_start,headers=header_client,json=body)
+    print(f'Done starting')
+    return True
+
 def fabric_process(server_details:dict,details):
     fabric_version = details['environment']['FABRIC_VERSION']
     server_id= server_details['server_id']
@@ -76,7 +87,9 @@ def fabric_process(server_details:dict,details):
     download_file(server_full_uuid=server_uuid,download_url=f'https://maven.fabricmc.net/net/fabricmc/fabric-installer/{fabric_version}/fabric-installer-{fabric_version}.jar')
     rename_file(server_identifier=server_identifier,old_name=f'{fabric_version}.jar',new_name=f'fabric-installer-{fabric_version}.jar')
     details['startup'] = 'java -jar fabric-installer.jar server -mcversion $MC_VERSION -loader $LOADER_VERSION -downloadMinecraft'
-    result_install = requests.patch(url=url_change_startup,headers=header_app,json=details)
+    response = requests.patch(url=url_change_startup,headers=header_app,json=details)
+    print(response.json())
+    start_server(server_identifier=server_identifier)
     
     return True
 
@@ -99,7 +112,7 @@ class MinecraftChangeType(Resource):
         print(details)
         if details['environment']['PROJECT'] == "fabric":
             print('Fabric detected. Reinstalling')
-            fabric_process(server_uuid=check_user[1], details=details)
+            fabric_process(server_details=check_user[1], details=details)
         process_type = change_type(server_id=args['server_id'],details=next(a['body'] for a in server_details if a['id']==args['request_type']))
         return f"{process_type}"
             
