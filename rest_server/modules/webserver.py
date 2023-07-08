@@ -1,18 +1,20 @@
 from flask import Flask, json, request
 from flask_restful import Resource, Api, reqparse, abort
+from modules import version_downloader as vd
+import requests,json,yaml
+from pydactyl import PterodactylClient 
 
-import requests
-import os
-import json
-from dotenv import load_dotenv
 
-load_dotenv()
+with open('env.yml','r') as f:
+    api_keys = yaml.safe_load(f)
 
-app_key = os.getenv("APP_KEY")
-client_key = os.getenv("CLIENT_KEY")
-    
+app_key=[]
+for i in api_keys['app_key']:
+    app_key.append(i)   
+client_key = api_keys['client_key']
+
 header_app= {
-    "Authorization": f'Bearer {app_key}',
+    "Authorization": f'Bearer {app_key[0]}',
     "Content-type": 'application/json',
     "Accept": 'application/json',
 }
@@ -31,23 +33,14 @@ change_type_args.add_argument("server_id", type=int, help="External server id in
 change_type_args.add_argument("owner_id", type=int, help="External owner id invalid...", required=True)
 change_type_args.add_argument("request_type", type=int, help="Server type request invalid...", required=True)
 
-
-def download_file(server_full_uuid:str,download_url:str):
-    print(f'downloading from {download_url}')
-    url_download = f'https://panel.infinity-projects.de/api/client/servers/{server_full_uuid}/files/pull'
-    body={
-        "root": "/",
-        "url": f"{download_url}"
-    }
-    response = requests.post(url=url_download,headers=header_client,json=body)
-    print(response)
-    return True
+#start Pydactyl instance
+client_api = PterodactylClient('https://panel.infinity-projects.de', client_key)
+server_api = PterodactylClient('https://panel.infinity-projects.de',app_key)
 
 
 #Check if user that requested the type change has the servers
 def verify_user(user_id:int,server_id:int):
-    url_verify_ownership=f'https://panel.infinity-projects.de/api/application/servers/{server_id}'
-    result = requests.get(url=url_verify_ownership,headers=header_app).json()
+    result=server_api.servers.get_server_info(server_id=146)
     if result['attributes']["user"]!=user_id:
         return False
     else:
@@ -56,37 +49,25 @@ def verify_user(user_id:int,server_id:int):
                       "server_identifier": f"{result['attributes']['identifier']}"
                     }
 def rename_file(server_identifier:str,old_name:str,new_name:str):
-    url_rename = f'https://panel.infinity-projects.de/api/client/{server_identifier}/files/rename'
-    body = {
-        "root": "/",
-        "files": [
-            {
-                "from": f"{old_name}",
-                "to": f"{new_name}"
-            }
-        ]
-    }
-    response = requests.put(url=url_rename,headers=header_client,json=body)
+    response = client_api.client.servers.files.rename_file(server_id=server_identifier,old_name=old_name,new_name=new_name,root='/')
     return response.json()
     
 def start_server(server_identifier:str):
-    url_start = f'https://panel.infinity-projects.de/api/client/servers/{server_identifier}/power'
-    body =  {
-            "signal": "start"
-            }
-    response = requests.post(url=url_start,headers=header_client,json=body)
-    print(f'Done starting')
-    return True
+    try:
+        client_api.client.servers.send_power_action(server_id=server_identifier,signal='start')
+        return True
+    except Exception as e:
+        return e
 
-def fabric_process(server_details:dict,details):
-    fabric_version = details['environment']['FABRIC_VERSION']
+def fabric_process(server_details:dict,env_details):
+    fabric_version = env_details['environment']['FABRIC_VERSION']
     server_id= server_details['server_id']
-    server_uuid = server_details['server_uuid']
+    server_uuid = server_details['  ']
     server_identifier= server_details['server_identifier']
     url_change_startup=f'https://panel.infinity-projects.de/api/application/servers/{server_id}/startup'
     download_file(server_full_uuid=server_uuid,download_url=f'https://maven.fabricmc.net/net/fabricmc/fabric-installer/{fabric_version}/fabric-installer-{fabric_version}.jar')
     rename_file(server_identifier=server_identifier,old_name=f'{fabric_version}.jar',new_name=f'fabric-installer-{fabric_version}.jar')
-    details['startup'] = 'java -jar fabric-installer.jar server -mcversion $MC_VERSION -loader $LOADER_VERSION -downloadMinecraft'
+    env_details['startup'] = 'java -jar fabric-installer.jar server -mcversion $MC_VERSION -loader $LOADER_VERSION -downloadMinecraft'
     response = requests.patch(url=url_change_startup,headers=header_app,json=details)
     print(response.json())
     start_server(server_identifier=server_identifier)
