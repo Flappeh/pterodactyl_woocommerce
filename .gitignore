@@ -1,2 +1,6 @@
 Panel_Project/.env
 rest_server/.env
+venv
+*_pycache_*
+OLD
+.env

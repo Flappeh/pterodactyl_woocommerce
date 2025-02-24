@@ -1,6 +1,0 @@
-# SMTP Configuration
-smtp_mail_from : "info@infinity-projects.de"
-
-smtp_mail_to:
-- akunbuatgta@gmail.com
-- business.sinar@gmail.com
