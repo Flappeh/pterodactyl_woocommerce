@@ -9,3 +9,4 @@ class PanelServer(Servers):
     def get_all_servers(self):
         data = self.list_servers()
         print(data)
+    
