@@ -25,8 +25,18 @@ class UpdateOrder(BaseModel):
     
 class Server(BaseModel):
     id: int
-    type: str
+    name: str
     ram: int
     cpu: int
+    disk: int
     database: int
     allocation: int
+    backup: int
+    
+class PanelUser(BaseModel):
+    id: int | None
+    username: str
+    email: str
+    first_name: str
+    last_name: str
+    password: str | None

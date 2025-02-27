@@ -2,7 +2,7 @@ from src.modules.worker import PanelWorker
 from fastapi import FastAPI
 from fastapi.responses import PlainTextResponse
 from src.schema import UpdateOrder
-
+import json
 app = FastAPI()
 
 
@@ -17,17 +17,18 @@ async def new_subscription(req: UpdateOrder):
     # res = await req.json()
     # print(res)
     request = req.model_dump()
-    print(request)
-    worker = PanelWorker()
-    worker.check_user_exists(request["billing"]["email"])
+    if req.status == "processing":
+        print("Processing new minecraft server")
+        worker = PanelWorker()
+        worker.start_order_creation(req)
+    else:
+        print("not processing request")
     return PlainTextResponse("Done", 200)
 
 
 @app.get("/users/")
 def read_users():
     return ["Rick", "Morty"]
-
-
 
 # if __name__ ==  "__main__":
 #     conn_panel = PanelServer()

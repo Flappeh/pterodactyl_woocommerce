@@ -1,0 +1,84 @@
+{
+    "products": [
+        {
+            "id": 98,
+            "name": "Grass",
+            "cpu": 100,
+            "ram": 3072,
+            "disk": 20000,
+            "allocation": 2,
+            "database": 3,
+            "backup": 2
+        },
+        {
+            "id": 130,
+            "name": "Stone",
+            "cpu": 150,
+            "ram": 5120,
+            "disk": 40000,
+            "allocation": 3,
+            "database": 5,
+            "backup": 2
+        },
+        {
+            "id": 131,
+            "name": "Iron",
+            "cpu": 200,
+            "ram": 8192,
+            "disk": 70000,
+            "allocation": 5,
+            "database": 8,
+            "backup": 4
+        },
+        {
+            "id": 132,
+            "name": "Gold",
+            "cpu": 250,
+            "ram": 12288,
+            "disk": 100000,
+            "allocation": 7,
+            "database": 12,
+            "backup": 4
+        },
+        {
+            "id": 133,
+            "name": "Diamond",
+            "cpu": 400,
+            "ram": 16384,
+            "disk": 150000,
+            "allocation": 10,
+            "database": 16,
+            "backup": 5
+        },
+        {
+            "id": 201,
+            "name": "Bungeecord - 512 MB",
+            "cpu": 50,
+            "ram": 512,
+            "disk": 1000,
+            "allocation": 1,
+            "database": 1,
+            "backup": 1
+        },
+        {
+            "id": 202,
+            "name": "Bungeecord - 1 GB",
+            "cpu": 50,
+            "ram": 1024,
+            "disk": 1000,
+            "allocation": 1,
+            "database": 1,
+            "backup": 1
+        },
+        {
+            "id": 203,
+            "name": "Dirt",
+            "cpu": 50,
+            "ram": 2048,
+            "disk": 10000,
+            "allocation": 1,
+            "database": 3,
+            "backup": 0
+        }
+    ]
+}
